@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 0,
         width: '85%',
-        marginVertical: 5,
+        marginVertical: 8,
     },
     iconField: {
         marginRight: 10,
@@ -111,4 +111,30 @@ export const styles = StyleSheet.create({
         marginTop: 2,
     },
 
+    // Screens
+    brandTitle: {
+        fontFamily: 'InterBold',
+        fontSize: 16,
+        lineHeight: 19,
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        color: '#10515C',
+        marginBottom: 15,
+    },
+
+    // Login
+    loginContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loginTitle: {
+        fontSize: 18,
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    loginTitleContainer: {
+        marginBottom: '10%',
+        textAlign: 'center',
+    },
 });
