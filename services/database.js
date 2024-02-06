@@ -16,11 +16,14 @@ export const getRecordsFromDB = async (tableName) => {
     const results = [];
     try {
         const docRef = collection(db, tableName);
-        console.log("DOC_REF: ", docRef);
+        // console.log("DOC_REF: ", docRef);
         const querySnapshot = await getDocs(docRef);
         querySnapshot && querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-            results.push(doc.data());
+            // console.log(`${doc.id} => ${doc.data()}`);
+            results.push({
+                id: doc.id,
+                ...doc.data(),
+            });
         });
     } catch (e) {
         console.log("querySnapshot ERROR: ", e);
@@ -45,7 +48,7 @@ export const getOneRecordFromDB = async (tableName, id) => {
 };
 
 
-export const updateRecord = async (tableName, id, dataObj) => {
+export const addOrUpdateRecord = async (tableName, id, dataObj) => {
     const docRef = doc(db, tableName, id);
     return await setDoc(docRef, dataObj);
 };

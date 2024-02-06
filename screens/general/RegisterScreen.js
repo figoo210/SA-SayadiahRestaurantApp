@@ -89,7 +89,7 @@ const RegisterScreen = ({ navigation }) => {
                         placeholder="Password"
                         value={password}
                         onValueChange={setPassword}
-                        secureTextEntry
+                        password={true}
                     />
                     <CustomButton
                         title="Register"

@@ -5,8 +5,8 @@ import * as DocumentPicker from 'expo-document-picker';
 import { styles } from '../assets/styles';
 import {TextInput} from "react-native-paper";
 
-const AttachmentField = ({ onAttachment }) => {
-    const [value, setValue] = useState("");
+const AttachmentField = ({ onAttachment, value }) => {
+    // const [value, setValue] = useState("");
 
     useEffect(() => {
         (async () => {
@@ -22,7 +22,7 @@ const AttachmentField = ({ onAttachment }) => {
     const handleAttachmentResult = (result) => {
         if (!result.canceled && result.assets && result.assets.length > 0) {
             const selectedAsset = result.assets[0];
-            setValue(selectedAsset.name || `photo-${Math.random()}.jpg`);
+            // setValue(selectedAsset.name || `photo-${Math.random()}.jpg`);
             onAttachment && onAttachment(selectedAsset);
         }
     };

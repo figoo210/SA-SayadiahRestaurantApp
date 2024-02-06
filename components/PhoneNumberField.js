@@ -5,7 +5,7 @@ import {Text} from "react-native-paper";
 import PhoneInput from "react-native-phone-number-input";
 
 
-const PhoneNumberField = ({ onValueChange }) => {
+const PhoneNumberField = ({ onValueChange, getDialCode, getPhone, initValue, disable=false }) => {
     const [value, setValue] = useState("");
     const [formattedValue, setFormattedValue] = useState("");
     const [valid, setValid] = useState(false);
@@ -21,17 +21,20 @@ const PhoneNumberField = ({ onValueChange }) => {
     return (
         <View>
             <PhoneInput
+                disabled={disable}
                 ref={phoneInput}
-                defaultValue={value}
+                defaultValue={value || initValue}
                 defaultCode="SA"
                 layout="first"
                 onChangeText={(text) => {
                     setValue(text);
                     checkPhoneValidation();
+                    getPhone && getPhone(text);
                 }}
                 onChangeFormattedText={(text) => {
                     setFormattedValue(text);
                     onValueChange && onValueChange(text);
+                    getDialCode && getDialCode(text);
                 }}
                 containerStyle={styles.customFieldContainer}
                 textContainerStyle={styles.customField}

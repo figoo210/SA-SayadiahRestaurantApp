@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import {storeData} from "./secureStore";
-import {getOneRecordFromDB, updateRecord} from "./database";
+import {getOneRecordFromDB, addOrUpdateRecord} from "./database";
 
 export const signup = async (name, email, password, branchCode, role) => {
     // Validate Email & Password
@@ -26,7 +26,7 @@ export const signup = async (name, email, password, branchCode, role) => {
             email: user.email,
             role: role
         };
-        await updateRecord("users", user.uid, u);
+        await addOrUpdateRecord("users", user.uid, u);
         await storeData("user", u);
         return [true, u, "User signed up successfully"];
     } catch (error) {
@@ -52,11 +52,6 @@ export const login = async (email, password) => {
         console.log("Login Error: ", e);
         return [false, null, e.message || e];
     }
-};
-
-
-export const logout = async () => {
-    await signOut(auth);
 };
 
 

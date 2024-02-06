@@ -40,8 +40,7 @@ const LoginScreen = ({ navigation }) => {
                 placeholder="Password"
                 value={password}
                 onValueChange={setPassword}
-                // Assuming your InputField supports secureTextEntry prop
-                secureTextEntry
+                password={true}
             />
             <CustomButton
                 disable={(!email || email.length === 0 || !password || password.length === 0)}

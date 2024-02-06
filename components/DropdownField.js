@@ -3,18 +3,19 @@ import { Picker } from '@react-native-picker/picker';
 import {styles} from "../assets/styles";
 import {View} from "react-native";
 
-const DropdownField = ({ selectedValue, onValueChange, items, placeholder }) => {
+const DropdownField = ({ selectedValue, onValueChange, items, placeholder, active=true, width }) => {
     return (
-        <View style={styles.customFieldContainer}>
+        <View style={!width ? styles.customFieldContainer : {...styles.customFieldContainer, width: width}}>
             <Picker
                 dropdownIconColor="#10515C"
                 style={styles.customField}
                 selectedValue={selectedValue}
                 onValueChange={onValueChange}
+                enabled={active}
             >
                 <Picker.Item
                     color={"#aaa"}
-                    enabled={false}
+                    // enabled={false}
                     style={styles.pickerItem}
                     label={placeholder || "Select"}
                     value={placeholder}

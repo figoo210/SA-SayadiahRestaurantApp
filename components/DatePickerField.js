@@ -4,8 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { DatePickerModal } from 'react-native-paper-dates';
 import {styles} from "../assets/styles";
 
-export default function DatePickerField({ placeholder, startYear, date, onValueChange }) {
-    const [value, setValue] = React.useState("");
+export default function DatePickerField({ placeholder, startYear, date, onValueChange, value, startDate, endDate, range=false }) {
     const [open, setOpen] = React.useState(false);
 
     const onDismissSingle = React.useCallback(() => {
@@ -15,8 +14,7 @@ export default function DatePickerField({ placeholder, startYear, date, onValueC
     const onConfirmSingle = React.useCallback(
         (params) => {
             setOpen(false);
-            onValueChange && onValueChange(params.date);
-            setValue(params.date.toLocaleDateString());
+            onValueChange && onValueChange(range ? params : params.date);
         },
         [setOpen]
     );
@@ -33,16 +31,31 @@ export default function DatePickerField({ placeholder, startYear, date, onValueC
                     right={<TextInput.Icon icon="calendar" color={value && value.length > 0 ? "#10515C" : "#484848"} />}
                 />
             </TouchableOpacity>
-            <DatePickerModal
-                locale="en-GB"
-                mode="single"
-                visible={open}
-                onDismiss={onDismissSingle}
-                date={date}
-                onConfirm={onConfirmSingle}
-                presentationStyle="formSheet"
-                startYear={startYear || 2024}
-            />
+            {range ? (
+                <DatePickerModal
+                    locale="en-GB"
+                    mode="range"
+                    visible={open}
+                    onDismiss={onDismissSingle}
+                    date={date}
+                    onConfirm={onConfirmSingle}
+                    presentationStyle="formSheet"
+                    startYear={startYear || 2024}
+                    startDate={range.startDate}
+                    endDate={range.endDate}
+                />
+            ) : (
+                <DatePickerModal
+                    locale="en-GB"
+                    mode="single"
+                    visible={open}
+                    onDismiss={onDismissSingle}
+                    date={date}
+                    onConfirm={onConfirmSingle}
+                    presentationStyle="formSheet"
+                    startYear={startYear || 2024}
+                />
+            )}
         </View>
     )
 }

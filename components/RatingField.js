@@ -7,7 +7,7 @@ import {Text} from "react-native-paper"; // or '@expo/vector-icons/MaterialCommu
 
 // Get the device width to make the button responsive
 const deviceWidth = Dimensions.get('window').width;
-const starSize = deviceWidth * 0.1; // Adjust size of stars relative to screen width
+const starSize = deviceWidth * 0.1;
 
 const RatingField = ({ initialRating = 0, onRatingChange, disable = false, title = 'Rating 1' }) => {
     const [rating, setRating] = useState(initialRating);
