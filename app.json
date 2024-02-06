@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "syRestaurants",
+    "name": "الصيادية",
     "slug": "syRestaurants",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,13 +21,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.figoo210.syRestaurants"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "df15d84f-94e9-4590-9ecb-e5f5a06b97e8"
+      }
+    }
   }
 }
