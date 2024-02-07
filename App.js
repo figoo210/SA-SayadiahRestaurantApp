@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {PaperProvider} from "react-native-paper";
 import {theme} from "./assets/styles";
 import {AuthProvider} from "./services/AuthContext";
