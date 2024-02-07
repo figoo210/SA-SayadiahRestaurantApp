@@ -46,8 +46,7 @@ const priorities = [
 ];
 
 
-const IssuesReportScreen = ({ navigation, route }) => {
-    const { kind } = route.params;
+const IssuesReportScreen = ({ navigation }) => {
     const { currentUser } = useAuth();
 
     const [issues, setIssues] = useState([]);

@@ -342,4 +342,12 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
         fontSize: 16,
     },
+    chartContainer: {
+        margin: 20,
+        padding: 20,
+        borderRadius: 20,
+        // backgroundColor: "#D9D9D9",
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 });

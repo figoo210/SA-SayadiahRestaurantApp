@@ -23,7 +23,20 @@ const TicketsListScreen = ({ navigation }) => {
     useFocusEffect(useCallback(() => {
         const fetchData = async () => {
             const allData = await getRecordsFromDB("tickets");
-            setTickets(allData);
+            const l = [];
+            for (let i = 0; i < allData.length; i++) {
+                const d = allData[i];
+                if (!d.isDeleted) {
+                    if (currentUser.role === "Staff") {
+                        if (d.createdBy === currentUser.email) {
+                            l.push(d);
+                        }
+                    } else {
+                        l.push(d);
+                    }
+                }
+            }
+            setTickets(l);
         };
 
         fetchData().catch(console.error);

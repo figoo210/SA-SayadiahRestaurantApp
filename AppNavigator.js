@@ -45,7 +45,7 @@ import BranchesListScreen from "./screens/admin/BranchesListScreen";
 
 
 // Keep the splash screen visible while we fetch resources
-// SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 
 const Stack = createStackNavigator();
 

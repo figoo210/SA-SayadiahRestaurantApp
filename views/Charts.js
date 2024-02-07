@@ -40,24 +40,25 @@ export const DynamicLineChart = () => {
     }, [salesData]);
 
     return (
-        <View>
+        <View style={styles.chartContainer}>
             <Text style={{...styles.titleHomeScreen, color: "#10515C", fontSize: 18}}>Branches Live Sales</Text>
             <LineChart
                 data={salesData}
                 width={Dimensions.get('window').width - 16}
                 height={220}
                 chartConfig={{
-                    backgroundColor: '#e26a00',
-                    backgroundGradientFrom: '#fb8c00',
-                    backgroundGradientTo: '#ffa726',
+                    backgroundGradientFrom: '#fff',
+                    backgroundGradientTo: '#fff',
                     decimalPlaces: 2,
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    color: (opacity = 1) => `rgba(100, 100, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(100, 0, 100, ${opacity})`,
+                    withInnerLines: false,
+                    withOuterLines: false,
                 }}
                 bezier
                 style={{
                     marginVertical: 8,
-                    borderRadius: 16
+                    borderRadius: 16,
                 }}
             />
             <Text style={{ textAlign: 'center' }}>Data updates every 5 seconds</Text>
@@ -111,7 +112,7 @@ export const SalesBarChart = () => {
         ],
     };
     return (
-        <View>
+        <View style={styles.chartContainer}>
             <Text style={{...styles.titleHomeScreen, color: "#10515C", fontSize: 18}}>Last Week Sales</Text>
             <BarChart
                 data={data}
@@ -124,6 +125,8 @@ export const SalesBarChart = () => {
                     strokeWidth: 2,
                     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                     labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                    withInnerLines: false,
+                    withOuterLines: false,
 
                 }}
                 style={{
@@ -132,7 +135,7 @@ export const SalesBarChart = () => {
                     paddingTop: 10,
                 }}
                 yAxisSuffix={""}
-            />
+                yAxisLabel={""}/>
         </View>
     )
 };
@@ -144,7 +147,7 @@ export const CategoryPieChart = () => {
         { name: 'Vegetarian', population: 527612, color: '#2ecc71', legendFontColor: '#7F7F7F', legendFontSize: 15 }
     ];
     return (
-        <View>
+        <View style={styles.chartContainer}>
             <Text style={{...styles.titleHomeScreen, color: "#10515C", fontSize: 18}}>Annual sales based on meals type.</Text>
             <PieChart
                 data={data}
@@ -173,21 +176,20 @@ export const GoalsProgressChart = () => {
         data: [0.4, 0.6, 0.8]
     };
     return (
-        <View>
+        <View style={{ ...styles.chartContainer }}>
             <Text style={{...styles.titleHomeScreen, color: "#10515C", fontSize: 18}}>Goals Progress</Text>
             <ProgressChart
                 data={data}
                 width={Dimensions.get('window').width}
-                padding={30}
                 height={220}
                 strokeWidth={16}
-                radius={32}
+                radius={30}
                 chartConfig={{
-                    backgroundGradientFrom: 'blue',
-                    backgroundGradientTo: 'green',
+                    backgroundGradientFrom: '#FFF',
+                    backgroundGradientTo: '#FFF',
                     decimalPlaces: 2, // optional, defaults to 2dp
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    color: (opacity = 1) => `rgba(100, 100, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(255, 100, 100, ${opacity})`,
                 }}
                 hideLegend={false}
             />

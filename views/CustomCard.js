@@ -65,7 +65,8 @@ const CustomCard = ({ obj, id, onPress, status, cardType }) => {
                 {obj.quantity && <Text style={styles.issueCardTitle}>{obj.quantity} {obj.unit}</Text>}
                 {obj.staffName && <Text style={styles.issueCardTitle}>{obj.staffName}</Text>}
 
-                {status && <Text style={styles.issueStatus}>{!obj.completed && !obj.pending ? "Reported" : status}</Text>}
+                {status && !obj.hasOwnProperty("paid") && <Text style={styles.issueStatus}>{!obj.completed && !obj.pending ? "Reported" : status}</Text>}
+                {status && obj.hasOwnProperty("paid") && <Text style={styles.issueStatus}>{status}</Text>}
             </View>
             {/*<View style={{ flex: 1 }}><Text><Icon name={"arrow-right"} color={"#aaa"} size={starSize} /></Text></View>*/}
         </TouchableOpacity>

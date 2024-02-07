@@ -25,7 +25,20 @@ const IssuesListScreen = ({ navigation }) => {
         const fetchIssues = async () => {
             const allIssues = await getRecordsFromDB(`salesIssues`);
             // console.log("###: ", allIssues);
-            setIssues(allIssues);
+            const l = [];
+            for (let i = 0; i < allIssues.length; i++) {
+                const d = allIssues[i];
+                if (!d.isDeleted) {
+                    if (currentUser.role === "Staff") {
+                        if (d.staffEmail === currentUser.email) {
+                            l.push(d);
+                        }
+                    } else {
+                        l.push(d);
+                    }
+                }
+            }
+            setIssues(l);
         };
 
         fetchIssues().catch(console.error);

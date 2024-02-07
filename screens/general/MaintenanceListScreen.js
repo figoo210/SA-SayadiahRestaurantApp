@@ -27,7 +27,13 @@ const MaintenanceListScreen = ({ navigation }) => {
             for (let i = 0; i < allData.length; i++) {
                 const d = allData[i];
                 if (!d.isDeleted) {
-                    l.push(d);
+                    if (currentUser.role === "Staff") {
+                        if (d.createdBy === currentUser.email) {
+                            l.push(d);
+                        }
+                    } else {
+                        l.push(d);
+                    }
                 }
             }
             setData(l);

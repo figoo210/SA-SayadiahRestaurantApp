@@ -1,5 +1,5 @@
 // BillsListScreen.js
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import {List} from 'react-native-paper';
 import { styles } from '../../assets/styles';
@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar';
 import {getRecordsFromDB} from "../../services/database";
 import CustomButton from "../../components/CustomButton";
 import CustomCard from "../../views/CustomCard";
+import {useFocusEffect} from "@react-navigation/native";
 
 const BillsListScreen = ({ navigation }) => {
 
@@ -17,14 +18,14 @@ const BillsListScreen = ({ navigation }) => {
         setActiveStatusFilter(status);
     };
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         const fetchData = async () => {
             const allData = await getRecordsFromDB("utilityBills");
             setBills(allData);
         };
 
         fetchData().catch(console.error);
-    }, []);
+    }, []));
 
     return (
         <View style={styles.listContainer}>
@@ -62,7 +63,7 @@ const BillsListScreen = ({ navigation }) => {
 
                         if (activeStatusFilter === "Paid") {
                             if (bill.paid) {
-                                return <CustomCard id={index} key={index} status={"Upcoming"} obj={bill} onPress={() => navigation.navigate('BillDetailsScreen', { bill : bill, status: activeStatusFilter })} cardType={"Bill"} />
+                                return <CustomCard id={index} key={index} status={"Paid"} obj={bill} onPress={() => navigation.navigate('BillDetailsScreen', { bill : bill, status: activeStatusFilter })} cardType={"Bill"} />
                             }
                         }
                     }

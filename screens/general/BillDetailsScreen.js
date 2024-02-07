@@ -2,10 +2,17 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import {styles} from "../../assets/styles";
 import NavBar from "../../components/NavBar";
+import CustomButton from "../../components/CustomButton";
+import {addOrUpdateRecord} from "../../services/database";
 
 const BillDetailsScreen = ({ route, navigation }) => {
     // Extract the bill ID from the navigation parameters
     const { bill, status } = route.params;
+
+    const payHandler = async () => {
+        await addOrUpdateRecord("utilityBills", bill.id, {...bill, paid: true});
+        navigation.navigate("UtilitiesBills");
+    };
 
     return (
         <View style={styles.listContainer}>
@@ -45,6 +52,8 @@ const BillDetailsScreen = ({ route, navigation }) => {
                     </View>
                 </View>
             </ScrollView>
+
+            <CustomButton title={"Paid"} onPress={payHandler} secondary={false} fixed={true}/>
         </View>
     );
 };
